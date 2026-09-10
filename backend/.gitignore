@@ -4,3 +4,6 @@ src/logger/logs/*.log
 .DS_Store
 npm-debug.log*
 dist/
+
+scripts
+
