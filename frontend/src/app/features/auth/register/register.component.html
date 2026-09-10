@@ -1,0 +1,44 @@
+<div class="container auth-page">
+  <div class="auth-card">
+    <h1>{{ 'auth.register' | translate }}</h1>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label>{{ 'auth.name' | translate }}</label>
+        <input type="text" class="form-control" formControlName="name" />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <span class="field-error">Name is required</span>
+        }
+      </div>
+      <div class="field">
+        <label>{{ 'auth.email' | translate }}</label>
+        <input type="email" class="form-control" formControlName="email" />
+        @if (form.controls.email.invalid && form.controls.email.touched) {
+          <span class="field-error">A valid email is required</span>
+        }
+      </div>
+      <div class="field">
+        <label>{{ 'auth.phone' | translate }}</label>
+        <input type="tel" class="form-control" formControlName="phone" />
+        @if (form.controls.phone.invalid && form.controls.phone.touched) {
+          <span class="field-error">Phone is required</span>
+        }
+      </div>
+      <div class="field">
+        <label>{{ 'auth.password' | translate }}</label>
+        <input type="password" class="form-control" formControlName="password" />
+        @if (form.controls.password.invalid && form.controls.password.touched) {
+          <span class="field-error">Password must be at least 8 characters</span>
+        }
+      </div>
+      <div class="field">
+        <label>{{ 'auth.confirmPassword' | translate }}</label>
+        <input type="password" class="form-control" formControlName="confirmPassword" />
+        @if (form.errors?.['passwordMismatch'] && form.controls.confirmPassword.touched) {
+          <span class="field-error">Passwords do not match</span>
+        }
+      </div>
+      <button type="submit" class="btn btn-signal auth-submit" [disabled]="submitting()">{{ 'auth.register' | translate }}</button>
+    </form>
+    <p class="auth-switch">{{ 'auth.haveAccount' | translate }} <a routerLink="/auth/login">{{ 'auth.login' | translate }}</a></p>
+  </div>
+</div>

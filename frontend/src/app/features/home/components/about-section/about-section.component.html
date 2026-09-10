@@ -1,0 +1,12 @@
+<section class="section about-section">
+  <div class="container about-grid">
+    <div class="about-media">
+      <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=800&q=80" alt="Inside the FRAY studio" />
+    </div>
+    <div class="about-copy">
+      <h2 class="section-heading">{{ 'section.about' | translate }}</h2>
+      <p>{{ about()?.description || 'FRAY started as a small studio making clothes for people who move fast between school, work, and everything after. Every piece is built to hold up to a real week.' }}</p>
+      <a class="btn btn-outline-ink" routerLink="/about">{{ 'nav.about' | translate }}</a>
+    </div>
+  </div>
+</section>

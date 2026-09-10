@@ -1,0 +1,47 @@
+<div class="container cart-page">
+  <h1 class="section-heading">{{ 'nav.cart' | translate }}</h1>
+
+  @if (loading()) {
+    <app-loading-spinner [label]="'common.loading' | translate"></app-loading-spinner>
+  } @else if (error()) {
+    <app-error-state [message]="'error.generic' | translate" (retry)="fetch()"></app-error-state>
+  } @else if (!cart() || cart()!.items.length === 0) {
+    <app-empty-state icon="bi-bag" [message]="'empty.cart' | translate" [actionLabel]="'common.viewAll' | translate" actionLink="/products"></app-empty-state>
+  } @else {
+    <div class="cart-layout">
+      <div class="cart-items">
+        @for (item of cart()!.items; track item.itemId) {
+          <div class="cart-item">
+            <img [src]="item.product.image" [alt]="item.product.name" />
+            <div class="cart-item-info">
+              <h3>{{ item.product.name }}</h3>
+              <p class="unit-price">{{ item.product.price | number }} EGP</p>
+              @if (!item.product.isActive || item.product.stock <= 0) {
+                <p class="stock-warning">{{ 'product.outOfStock' | translate }}</p>
+              }
+              <div class="quantity-control">
+                <button type="button" (click)="decreaseQuantity(item)" [disabled]="updatingItemId() === item.itemId">-</button>
+                <span>{{ item.quantity }}</span>
+                <button type="button" (click)="increaseQuantity(item)" [disabled]="updatingItemId() === item.itemId">+</button>
+              </div>
+            </div>
+            <div class="cart-item-side">
+              <span class="subtotal">{{ item.subtotal | number }} EGP</span>
+              <button type="button" class="remove-btn" (click)="removeItem(item)">{{ 'common.remove' | translate }}</button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="cart-summary">
+        <h3>{{ 'checkout.orderSummary' | translate }}</h3>
+        <div class="summary-row">
+          <span>{{ 'common.subtotal' | translate }}</span>
+          <span>{{ cart()!.total | number }} EGP</span>
+        </div>
+        <p class="summary-note">Shipping calculated at checkout.</p>
+        <a class="btn btn-signal checkout-btn" routerLink="/checkout">{{ 'common.checkout' | translate }}</a>
+      </div>
+    </div>
+  }
+</div>

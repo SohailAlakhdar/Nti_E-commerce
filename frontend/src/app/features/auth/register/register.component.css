@@ -1,0 +1,51 @@
+.auth-page {
+  padding: 3.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-card {
+  border: 2px solid var(--ink);
+  background-color: var(--paper-raised);
+  padding: 2.25rem;
+  max-width: 420px;
+  width: 100%;
+}
+
+.auth-card h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+.field {
+  margin-bottom: 1.15rem;
+}
+
+.field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--muted);
+}
+
+.field-error {
+  color: var(--signal);
+  font-size: 0.78rem;
+}
+
+.auth-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.auth-switch {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.auth-switch a {
+  font-weight: 700;
+  color: var(--signal);
+}

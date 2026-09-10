@@ -1,0 +1,43 @@
+.shipping-page {
+  padding: 2.5rem 0 3.5rem;
+  max-width: 800px;
+}
+
+.shipping-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.shipping-card {
+  border: 2px solid var(--ink);
+  padding: 1.5rem;
+  background-color: var(--paper-raised);
+  text-align: center;
+}
+
+.shipping-card i {
+  font-size: 1.75rem;
+  color: var(--signal);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.shipping-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.shipping-info {
+  border: 2px solid var(--ink);
+  padding: 1.75rem;
+  background-color: var(--paper-raised);
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .shipping-grid {
+    grid-template-columns: 1fr;
+  }
+}

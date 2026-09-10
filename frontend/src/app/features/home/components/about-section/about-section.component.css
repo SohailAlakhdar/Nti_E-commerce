@@ -1,0 +1,30 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.about-media {
+  border: 2px solid var(--ink);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.about-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-copy p {
+  color: var(--muted);
+  margin: 1.25rem 0 1.75rem;
+  max-width: 480px;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,88 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--paper);
+  border-bottom: 2px solid var(--ink);
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.9rem 0;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.brand span {
+  color: var(--signal);
+}
+
+.main-nav {
+  display: flex;
+  gap: 1.35rem;
+  flex: 1;
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+
+.main-nav a.active {
+  color: var(--signal);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon-link {
+  position: relative;
+  font-size: 1.15rem;
+  background: none;
+  border: none;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  inset-inline-end: -10px;
+  background-color: var(--signal);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.05rem 0.4rem;
+}
+
+.menu-toggle {
+  margin-inline-start: auto;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1rem 0 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.mobile-nav button {
+  text-align: start;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 1rem;
+}

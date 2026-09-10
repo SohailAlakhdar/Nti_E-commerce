@@ -1,0 +1,95 @@
+<div class="container checkout-page">
+  <h1 class="section-heading">{{ 'common.checkout' | translate }}</h1>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else if (!cart() || cart()!.items.length === 0) {
+    <app-empty-state icon="bi-bag" [message]="'empty.cart' | translate" [actionLabel]="'common.viewAll' | translate" actionLink="/products"></app-empty-state>
+  } @else {
+    <div class="checkout-layout">
+      <div class="checkout-main">
+        <section class="checkout-section">
+          <h3>{{ 'checkout.customerInfo' | translate }}</h3>
+          <form [formGroup]="customerForm" class="form-row">
+            <div class="field">
+              <label>{{ 'auth.name' | translate }}</label>
+              <input type="text" class="form-control" formControlName="customerName" />
+              @if (customerForm.controls.customerName.invalid && customerForm.controls.customerName.touched) {
+                <span class="field-error">Name is required</span>
+              }
+            </div>
+            <div class="field">
+              <label>{{ 'auth.phone' | translate }}</label>
+              <input type="tel" class="form-control" formControlName="customerPhone" />
+              @if (customerForm.controls.customerPhone.invalid && customerForm.controls.customerPhone.touched) {
+                <span class="field-error">Phone is required</span>
+              }
+            </div>
+          </form>
+        </section>
+
+        <section class="checkout-section">
+          <h3>{{ 'checkout.address' | translate }}</h3>
+
+          @if (addresses().length > 0) {
+            <div class="address-options">
+              @for (address of addresses(); track address.id) {
+                <label class="address-option" [class.selected]="!useNewAddress() && selectedAddressId() === address.id">
+                  <input
+                    type="radio"
+                    name="address"
+                    [checked]="!useNewAddress() && selectedAddressId() === address.id"
+                    (change)="selectAddress(address.id)"
+                  />
+                  <div>
+                    <p class="address-name">{{ address.fullName }}</p>
+                    <p>{{ address.building }}, {{ address.street }}, {{ address.area }}, {{ address.city }}</p>
+                  </div>
+                </label>
+              }
+              <label class="address-option" [class.selected]="useNewAddress()">
+                <input type="radio" name="address" [checked]="useNewAddress()" (change)="toggleNewAddress()" />
+                <span>Use a new address</span>
+              </label>
+            </div>
+          }
+
+          @if (useNewAddress()) {
+            <div class="new-address-form">
+              <app-address-form (save)="onAddressFormSave($event)"></app-address-form>
+            </div>
+          }
+        </section>
+      </div>
+
+      <div class="checkout-summary">
+        <h3>{{ 'checkout.orderSummary' | translate }}</h3>
+        @for (item of cart()!.items; track item.itemId) {
+          <div class="summary-item">
+            <span>{{ item.product.name }} x{{ item.quantity }}</span>
+            <span>{{ item.subtotal | number }} EGP</span>
+          </div>
+        }
+        <div class="summary-row">
+          <span>{{ 'common.subtotal' | translate }}</span>
+          <span>{{ cart()!.total | number }} EGP</span>
+        </div>
+        <div class="summary-row">
+          <span>{{ 'checkout.shippingCost' | translate }}</span>
+          <span>{{ shippingCost | number }} EGP</span>
+        </div>
+        <div class="summary-row total">
+          <span>{{ 'common.total' | translate }}</span>
+          <span>{{ total | number }} EGP</span>
+        </div>
+        <div class="payment-method">
+          <i class="bi bi-cash-coin"></i>
+          <span>{{ 'checkout.cashOnDelivery' | translate }}</span>
+        </div>
+        <button type="button" class="btn btn-signal place-order-btn" [disabled]="submitting()" (click)="placeOrder()">
+          {{ 'common.placeOrder' | translate }}
+        </button>
+      </div>
+    </div>
+  }
+</div>

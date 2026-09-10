@@ -1,0 +1,32 @@
+.policies-page {
+  padding: 2.5rem 0 3.5rem;
+  max-width: 800px;
+}
+
+.policy-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+
+.policy-tabs button {
+  border: 2px solid var(--ink);
+  background: none;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.policy-tabs button.active {
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
+.policy-content {
+  border: 2px solid var(--ink);
+  padding: 1.75rem;
+  background-color: var(--paper-raised);
+  line-height: 1.7;
+}

@@ -1,0 +1,32 @@
+<div class="container product-list-page">
+  <div class="list-toolbar">
+    <app-search-box [value]="search()" (valueChange)="onSearchChange($event)"></app-search-box>
+  </div>
+
+  <div class="list-layout">
+    <aside class="list-sidebar">
+      <app-product-filters [filters]="filters()" (filtersChange)="onFiltersChange($event)"></app-product-filters>
+    </aside>
+
+    <div class="list-main">
+      @if (loading()) {
+        <app-loading-spinner [label]="'common.loading' | translate"></app-loading-spinner>
+      } @else if (error()) {
+        <app-error-state [message]="'error.loadProducts' | translate" (retry)="retry()"></app-error-state>
+      } @else if (!result() || result()!.items.length === 0) {
+        <app-empty-state icon="bi-search" [message]="'empty.products' | translate"></app-empty-state>
+      } @else {
+        <div class="product-grid">
+          @for (product of result()!.items; track product.id) {
+            <app-product-card [product]="product" (addToCart)="onAddToCart($event)"></app-product-card>
+          }
+        </div>
+        <app-pagination
+          [currentPage]="result()!.currentPage"
+          [totalPages]="result()!.totalPages"
+          (pageChange)="onPageChange($event)"
+        ></app-pagination>
+      }
+    </div>
+  </div>
+</div>

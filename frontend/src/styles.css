@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --ink: #14131a;
+  --paper: #f3efe6;
+  --paper-raised: #ffffff;
+  --signal: #ff4b2b;
+  --signal-dark: #d9391c;
+  --moss: #3d4a34;
+  --sun: #f2c230;
+  --line: #dad3c2;
+  --muted: #6f6a5e;
+
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+.btn {
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 0.65rem 1.5rem;
+  border: 2px solid transparent;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-signal {
+  background-color: var(--signal);
+  color: #fff;
+}
+
+.btn-signal:hover {
+  background-color: var(--signal-dark);
+  color: #fff;
+}
+
+.btn-outline-ink {
+  background-color: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.btn-outline-ink:hover {
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
+.btn-ink {
+  background-color: var(--ink);
+  color: var(--paper);
+}
+
+.btn-ink:hover {
+  background-color: #000;
+  color: var(--paper);
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.section-heading {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  margin-bottom: 2rem;
+}
+
+.card-block {
+  border: 2px solid var(--ink);
+  background-color: var(--paper-raised);
+}
+
+.text-muted-strong {
+  color: var(--muted);
+}
+
+[dir='rtl'] .flip-x {
+  transform: scaleX(-1);
+}
+
+::selection {
+  background-color: var(--sun);
+  color: var(--ink);
+}
+
+@media (max-width: 576px) {
+  .section {
+    padding: 2.5rem 0;
+  }
+}

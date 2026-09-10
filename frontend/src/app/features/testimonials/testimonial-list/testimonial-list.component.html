@@ -1,0 +1,23 @@
+<div class="container testimonial-page">
+  <h1 class="section-heading">{{ 'section.testimonials' | translate }}</h1>
+
+  <div class="testimonial-layout">
+    <div class="testimonial-list">
+      @if (loading()) {
+        <app-loading-spinner></app-loading-spinner>
+      } @else if (testimonials().length === 0) {
+        <app-empty-state icon="bi-chat-quote" [message]="'empty.testimonials' | translate"></app-empty-state>
+      } @else {
+        @for (testimonial of testimonials(); track testimonial.id) {
+          <blockquote class="testimonial-card">
+            <p>&ldquo;{{ testimonial.message }}&rdquo;</p>
+            <cite>{{ testimonial.name }}</cite>
+          </blockquote>
+        }
+      }
+    </div>
+    <div class="testimonial-form-slot">
+      <app-testimonial-form></app-testimonial-form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="filters-panel">
+  <div class="filters-header">
+    <h3>{{ 'common.filter' | translate }}</h3>
+    <button type="button" class="clear-btn" (click)="clear()">{{ 'common.clearFilters' | translate }}</button>
+  </div>
+
+  <div class="filter-group">
+    <label>{{ 'nav.men' | translate }} / {{ 'nav.women' | translate }}</label>
+    <select class="form-select" [ngModel]="filters.gender" (ngModelChange)="update({ gender: $event })">
+      <option [ngValue]="undefined">All</option>
+      @for (option of genderOptions; track option.value) {
+        <option [ngValue]="option.value">{{ labelFor(option.label) }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label>Category</label>
+    <select class="form-select" [ngModel]="filters.subCategory" (ngModelChange)="update({ subCategory: $event })">
+      <option [ngValue]="undefined">All</option>
+      @for (option of subCategoryOptions; track option.value) {
+        <option [ngValue]="option.value">{{ labelFor(option.label) }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label>{{ 'common.price' | translate }}</label>
+    <div class="price-inputs">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Min"
+        [ngModel]="filters.minPrice"
+        (ngModelChange)="update({ minPrice: $event })"
+      />
+      <span>-</span>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Max"
+        [ngModel]="filters.maxPrice"
+        (ngModelChange)="update({ maxPrice: $event })"
+      />
+    </div>
+  </div>
+</div>

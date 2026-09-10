@@ -1,0 +1,14 @@
+.admin-table {
+  border: 2px solid var(--ink);
+  background-color: var(--paper-raised);
+}
+
+.admin-table th {
+  font-family: var(--font-display);
+  border-bottom: 2px solid var(--ink);
+}
+
+.admin-table a {
+  font-weight: 600;
+  color: var(--signal);
+}

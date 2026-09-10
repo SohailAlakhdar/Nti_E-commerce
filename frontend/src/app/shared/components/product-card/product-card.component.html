@@ -1,0 +1,26 @@
+<a class="product-card" [routerLink]="['/products', product.slug]">
+  <div class="product-card-media">
+    <img [src]="product.images[0]" [alt]="product.name" loading="lazy" />
+    @if (!product.isActive) {
+      <span class="badge-flag badge-flag-inactive">{{ 'product.inactive' | translate }}</span>
+    } @else if (product.stock <= 0) {
+      <span class="badge-flag badge-flag-out">{{ 'product.outOfStock' | translate }}</span>
+    }
+  </div>
+  <div class="product-card-body">
+    <p class="product-card-category">{{ product.subCategory }}</p>
+    <h3 class="product-card-name">{{ product.name }}</h3>
+    <div class="product-card-footer">
+      <span class="product-card-price">{{ product.price | number }} EGP</span>
+      <button
+        type="button"
+        class="btn-add"
+        [disabled]="!purchasable"
+        (click)="onAddToCart($event)"
+        [attr.aria-label]="'product.addToCart' | translate"
+      >
+        <i class="bi bi-bag-plus"></i>
+      </button>
+    </div>
+  </div>
+</a>

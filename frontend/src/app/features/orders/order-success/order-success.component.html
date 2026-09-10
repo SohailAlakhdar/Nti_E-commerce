@@ -1,0 +1,55 @@
+<div class="container order-success-page">
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else if (error() || !order()) {
+    <app-error-state [message]="'error.generic' | translate" (retry)="fetch()"></app-error-state>
+  } @else {
+    <div class="success-banner">
+      <i class="bi bi-check-circle-fill"></i>
+      <h1>Thanks, your order is in!</h1>
+      <p>Order number <strong>{{ order()!.orderNumber }}</strong></p>
+    </div>
+
+    <div class="order-summary-card">
+      <div class="order-summary-header">
+        <app-order-status-badge [status]="order()!.status"></app-order-status-badge>
+        <span>{{ order()!.createdAt | date: 'medium' }}</span>
+      </div>
+
+      <div class="order-details-grid">
+        <div>
+          <h4>{{ 'checkout.customerInfo' | translate }}</h4>
+          <p>{{ order()!.customerName }}</p>
+          <p>{{ order()!.customerPhone }}</p>
+        </div>
+        <div>
+          <h4>{{ 'checkout.address' | translate }}</h4>
+          <p>{{ order()!.address.building }}, {{ order()!.address.street }}</p>
+          <p>{{ order()!.address.area }}, {{ order()!.address.city }}</p>
+        </div>
+      </div>
+
+      <h4>Products</h4>
+      @for (item of order()!.items; track item.productId) {
+        <div class="order-item-row">
+          <img [src]="item.image" [alt]="item.name" />
+          <span class="item-name">{{ item.name }} x{{ item.quantity }}</span>
+          <span>{{ item.subtotal | number }} EGP</span>
+        </div>
+      }
+
+      <div class="order-totals">
+        <div class="summary-row">
+          <span>{{ 'checkout.shippingCost' | translate }}</span>
+          <span>{{ order()!.shippingCost | number }} EGP</span>
+        </div>
+        <div class="summary-row total">
+          <span>{{ 'common.total' | translate }}</span>
+          <span>{{ order()!.total | number }} EGP</span>
+        </div>
+      </div>
+    </div>
+
+    <a class="btn btn-outline-ink" routerLink="/products">Continue Shopping</a>
+  }
+</div>

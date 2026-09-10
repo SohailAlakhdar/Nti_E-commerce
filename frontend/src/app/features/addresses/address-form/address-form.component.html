@@ -1,0 +1,71 @@
+<form class="address-form" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="form-row">
+    <div class="field">
+      <label>{{ 'auth.name' | translate }}</label>
+      <input type="text" class="form-control" formControlName="fullName" />
+      @if (form.controls.fullName.invalid && form.controls.fullName.touched) {
+        <span class="field-error">Full name is required</span>
+      }
+    </div>
+    <div class="field">
+      <label>{{ 'auth.phone' | translate }}</label>
+      <input type="tel" class="form-control" formControlName="phone" />
+      @if (form.controls.phone.invalid && form.controls.phone.touched) {
+        <span class="field-error">Phone is required</span>
+      }
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="field">
+      <label>City</label>
+      <input type="text" class="form-control" formControlName="city" />
+      @if (form.controls.city.invalid && form.controls.city.touched) {
+        <span class="field-error">City is required</span>
+      }
+    </div>
+    <div class="field">
+      <label>Area</label>
+      <input type="text" class="form-control" formControlName="area" />
+      @if (form.controls.area.invalid && form.controls.area.touched) {
+        <span class="field-error">Area is required</span>
+      }
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Street</label>
+    <input type="text" class="form-control" formControlName="street" />
+    @if (form.controls.street.invalid && form.controls.street.touched) {
+      <span class="field-error">Street is required</span>
+    }
+  </div>
+
+  <div class="form-row three">
+    <div class="field">
+      <label>Building</label>
+      <input type="text" class="form-control" formControlName="building" />
+      @if (form.controls.building.invalid && form.controls.building.touched) {
+        <span class="field-error">Building is required</span>
+      }
+    </div>
+    <div class="field">
+      <label>Floor</label>
+      <input type="text" class="form-control" formControlName="floor" />
+    </div>
+    <div class="field">
+      <label>Apartment</label>
+      <input type="text" class="form-control" formControlName="apartment" />
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Notes</label>
+    <textarea class="form-control" rows="2" formControlName="notes"></textarea>
+  </div>
+
+  <div class="form-actions">
+    <button type="button" class="btn btn-outline-ink" (click)="cancel.emit()">{{ 'common.cancel' | translate }}</button>
+    <button type="submit" class="btn btn-signal">{{ 'common.save' | translate }}</button>
+  </div>
+</form>

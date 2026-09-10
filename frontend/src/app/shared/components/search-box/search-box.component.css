@@ -1,0 +1,17 @@
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box i {
+  position: absolute;
+  inset-inline-start: 0.85rem;
+  color: var(--muted);
+}
+
+.search-box input {
+  padding-inline-start: 2.4rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+}

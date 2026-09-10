@@ -1,0 +1,23 @@
+<div class="container shipping-page">
+  <h1 class="section-heading">{{ 'nav.shipping' | translate }}</h1>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else if (policy()) {
+    <div class="shipping-grid">
+      <div class="shipping-card">
+        <i class="bi bi-cash-coin"></i>
+        <h3>{{ 'checkout.shippingCost' | translate }}</h3>
+        <p>{{ policy()!.cost | number }} EGP</p>
+      </div>
+      <div class="shipping-card">
+        <i class="bi bi-truck"></i>
+        <h3>Delivery Time</h3>
+        <p>{{ policy()!.estimatedDeliveryDays }}</p>
+      </div>
+    </div>
+    <div class="shipping-info">
+      <p>{{ policy()!.information }}</p>
+    </div>
+  }
+</div>

@@ -1,0 +1,92 @@
+<div class="admin-product-form">
+  <h1 class="section-heading">{{ productId() ? 'Edit Product' : 'Add Product' }}</h1>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form-card">
+      <div class="form-row">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name" />
+        </div>
+        <div class="field">
+          <label>Slug</label>
+          <input type="text" class="form-control" formControlName="slug" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Description</label>
+        <textarea class="form-control" rows="3" formControlName="description"></textarea>
+      </div>
+
+      <div class="form-row three">
+        <div class="field">
+          <label>Price</label>
+          <input type="number" class="form-control" formControlName="price" />
+        </div>
+        <div class="field">
+          <label>Stock</label>
+          <input type="number" class="form-control" formControlName="stock" />
+        </div>
+        <div class="field checkbox-field">
+          <label>
+            <input type="checkbox" formControlName="isActive" />
+            Active
+          </label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label>Gender</label>
+          <select class="form-select" formControlName="gender">
+            @for (option of genderOptions; track option.value) {
+              <option [value]="option.value">{{ option.label.en }}</option>
+            }
+          </select>
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <select class="form-select" formControlName="subCategory">
+            @for (option of subCategoryOptions; track option.value) {
+              <option [value]="option.value">{{ option.label.en }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Images</label>
+        <input type="file" class="form-control" multiple accept="image/*" (change)="onFilesSelected($event)" />
+
+        @if (uploading()) {
+          <p class="upload-status">Uploading images...</p>
+        }
+        @if (uploadError()) {
+          <p class="upload-status error">Image upload failed. Please try again.</p>
+        }
+
+        <div class="image-preview-grid">
+          @for (image of existingImages(); track image) {
+            <div class="image-preview">
+              <img [src]="image" alt="Product image" />
+              <button type="button" (click)="removeExistingImage(image)"><i class="bi bi-x-lg"></i></button>
+            </div>
+          }
+          @for (preview of pendingPreviews(); track preview; let i = $index) {
+            <div class="image-preview pending">
+              <img [src]="preview" alt="New product image" />
+              <button type="button" (click)="removePendingImage(i)"><i class="bi bi-x-lg"></i></button>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-signal" [disabled]="saving()">{{ 'common.save' | translate }}</button>
+      </div>
+    </form>
+  }
+</div>

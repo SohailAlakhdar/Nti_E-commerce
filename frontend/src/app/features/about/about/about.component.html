@@ -1,0 +1,21 @@
+<div class="container about-page">
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else {
+    <h1>{{ about()?.title || ('section.about' | translate) }}</h1>
+    <p class="about-description">{{ about()?.description || 'FRAY started as a small studio making clothes for people who move fast between school, work, and everything after.' }}</p>
+    @if (about()?.mission) {
+      <div class="mission-block">
+        <h3>Our Mission</h3>
+        <p>{{ about()!.mission }}</p>
+      </div>
+    }
+    @if (about()?.images?.length) {
+      <div class="about-gallery">
+        @for (image of about()!.images; track image) {
+          <img [src]="image" alt="Store gallery" />
+        }
+      </div>
+    }
+  }
+</div>

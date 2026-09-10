@@ -1,0 +1,17 @@
+.cta-section {
+  background-color: var(--sun);
+  padding: 3.5rem 0;
+}
+
+.cta-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.cta-inner h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  max-width: 560px;
+}

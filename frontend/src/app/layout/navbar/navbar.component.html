@@ -1,0 +1,74 @@
+<header class="site-header">
+  <div class="container">
+    <div class="header-row">
+      <a class="brand" routerLink="/" (click)="closeMenu()">FRAY<span>.</span></a>
+
+      <button type="button" class="menu-toggle d-lg-none" (click)="toggleMenu()" aria-label="Toggle menu">
+        <i class="bi" [class.bi-list]="!menuOpen" [class.bi-x-lg]="menuOpen"></i>
+      </button>
+
+      <nav class="main-nav d-none d-lg-flex">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ 'nav.home' | translate }}</a>
+        <a routerLink="/men" routerLinkActive="active">{{ 'nav.men' | translate }}</a>
+        <a routerLink="/women" routerLinkActive="active">{{ 'nav.women' | translate }}</a>
+        <a routerLink="/new-arrivals" routerLinkActive="active">{{ 'nav.newArrivals' | translate }}</a>
+        <a routerLink="/top-sales" routerLinkActive="active">{{ 'nav.topSales' | translate }}</a>
+        <a routerLink="/about" routerLinkActive="active">{{ 'nav.about' | translate }}</a>
+        <a routerLink="/testimonials" routerLinkActive="active">{{ 'nav.testimonials' | translate }}</a>
+        <a routerLink="/policies" routerLinkActive="active">{{ 'nav.policies' | translate }}</a>
+        <a routerLink="/shipping" routerLinkActive="active">{{ 'nav.shipping' | translate }}</a>
+      </nav>
+
+      <div class="header-actions d-none d-lg-flex">
+        <app-language-switcher></app-language-switcher>
+        <a class="icon-link" routerLink="/cart" aria-label="Cart">
+          <i class="bi bi-bag"></i>
+          @if (cartService.itemCount() > 0) {
+            <span class="cart-count">{{ cartService.itemCount() }}</span>
+          }
+        </a>
+        @if (authService.isAuthenticated()) {
+          <div class="dropdown">
+            <button class="icon-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" routerLink="/profile">{{ 'nav.profile' | translate }}</a></li>
+              <li><a class="dropdown-item" routerLink="/orders">{{ 'nav.myOrders' | translate }}</a></li>
+              <li><a class="dropdown-item" routerLink="/addresses">{{ 'nav.addresses' | translate }}</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><button class="dropdown-item" type="button" (click)="logout()">{{ 'nav.logout' | translate }}</button></li>
+            </ul>
+          </div>
+        } @else {
+          <a class="btn btn-ink btn-sm" routerLink="/auth/login">{{ 'nav.login' | translate }}</a>
+        }
+      </div>
+    </div>
+
+    @if (menuOpen) {
+      <nav class="mobile-nav d-lg-none">
+        <a routerLink="/" (click)="closeMenu()">{{ 'nav.home' | translate }}</a>
+        <a routerLink="/men" (click)="closeMenu()">{{ 'nav.men' | translate }}</a>
+        <a routerLink="/women" (click)="closeMenu()">{{ 'nav.women' | translate }}</a>
+        <a routerLink="/new-arrivals" (click)="closeMenu()">{{ 'nav.newArrivals' | translate }}</a>
+        <a routerLink="/top-sales" (click)="closeMenu()">{{ 'nav.topSales' | translate }}</a>
+        <a routerLink="/about" (click)="closeMenu()">{{ 'nav.about' | translate }}</a>
+        <a routerLink="/testimonials" (click)="closeMenu()">{{ 'nav.testimonials' | translate }}</a>
+        <a routerLink="/policies" (click)="closeMenu()">{{ 'nav.policies' | translate }}</a>
+        <a routerLink="/shipping" (click)="closeMenu()">{{ 'nav.shipping' | translate }}</a>
+        <a routerLink="/cart" (click)="closeMenu()">{{ 'nav.cart' | translate }} ({{ cartService.itemCount() }})</a>
+        @if (authService.isAuthenticated()) {
+          <a routerLink="/profile" (click)="closeMenu()">{{ 'nav.profile' | translate }}</a>
+          <a routerLink="/orders" (click)="closeMenu()">{{ 'nav.myOrders' | translate }}</a>
+          <a routerLink="/addresses" (click)="closeMenu()">{{ 'nav.addresses' | translate }}</a>
+          <button type="button" (click)="logout()">{{ 'nav.logout' | translate }}</button>
+        } @else {
+          <a routerLink="/auth/login" (click)="closeMenu()">{{ 'nav.login' | translate }}</a>
+          <a routerLink="/auth/register" (click)="closeMenu()">{{ 'nav.register' | translate }}</a>
+        }
+        <app-language-switcher></app-language-switcher>
+      </nav>
+    }
+  </div>
+</header>

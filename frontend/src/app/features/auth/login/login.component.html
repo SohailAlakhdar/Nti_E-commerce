@@ -1,0 +1,23 @@
+<div class="container auth-page">
+  <div class="auth-card">
+    <h1>{{ 'auth.login' | translate }}</h1>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label>{{ 'auth.email' | translate }}</label>
+        <input type="email" class="form-control" formControlName="email" />
+        @if (form.controls.email.invalid && form.controls.email.touched) {
+          <span class="field-error">A valid email is required</span>
+        }
+      </div>
+      <div class="field">
+        <label>{{ 'auth.password' | translate }}</label>
+        <input type="password" class="form-control" formControlName="password" />
+        @if (form.controls.password.invalid && form.controls.password.touched) {
+          <span class="field-error">Password is required</span>
+        }
+      </div>
+      <button type="submit" class="btn btn-signal auth-submit" [disabled]="submitting()">{{ 'auth.login' | translate }}</button>
+    </form>
+    <p class="auth-switch">{{ 'auth.noAccount' | translate }} <a routerLink="/auth/register">{{ 'auth.register' | translate }}</a></p>
+  </div>
+</div>

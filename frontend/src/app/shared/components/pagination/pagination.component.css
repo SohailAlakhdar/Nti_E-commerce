@@ -1,0 +1,9 @@
+.page-link {
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.page-item.active .page-link {
+  background-color: var(--ink);
+  border-color: var(--ink);
+}

@@ -1,0 +1,39 @@
+.testimonial-form-card {
+  border: 2px solid var(--ink);
+  padding: 1.75rem;
+  background-color: var(--paper-raised);
+  max-width: 520px;
+}
+
+.field {
+  margin-bottom: 1.15rem;
+}
+
+.field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--muted);
+}
+
+.field-error {
+  color: var(--signal);
+  font-size: 0.78rem;
+}
+
+.thank-you {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+.thank-you i {
+  font-size: 2.25rem;
+  color: var(--moss);
+  margin-bottom: 0.75rem;
+}
+
+.thank-you .muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}

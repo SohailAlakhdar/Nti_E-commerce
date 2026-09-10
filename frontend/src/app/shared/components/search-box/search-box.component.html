@@ -1,0 +1,10 @@
+<div class="search-box">
+  <i class="bi bi-search"></i>
+  <input
+    type="search"
+    class="form-control"
+    [placeholder]="'common.search' | translate"
+    [ngModel]="value"
+    (ngModelChange)="onInput($event)"
+  />
+</div>

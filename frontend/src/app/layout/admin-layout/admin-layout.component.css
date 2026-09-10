@@ -1,0 +1,14 @@
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--paper);
+}
+
+.admin-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-page {
+  padding: 1.75rem;
+}

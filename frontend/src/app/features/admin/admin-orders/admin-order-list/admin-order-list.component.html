@@ -1,0 +1,38 @@
+<div class="admin-orders">
+  <h1 class="section-heading">Orders</h1>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else if (orders().length === 0) {
+    <app-empty-state icon="bi-receipt" message="No orders found"></app-empty-state>
+  } @else {
+    <div class="table-responsive">
+      <table class="table admin-table">
+        <thead>
+          <tr>
+            <th>Order #</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (order of orders(); track order.id) {
+            <tr>
+              <td>{{ order.orderNumber }}</td>
+              <td>{{ order.customerName }}</td>
+              <td>{{ order.customerPhone }}</td>
+              <td>{{ order.total | number }} EGP</td>
+              <td><app-order-status-badge [status]="order.status"></app-order-status-badge></td>
+              <td>{{ order.createdAt | date: 'mediumDate' }}</td>
+              <td><a [routerLink]="['/admin/orders', order.id]">View</a></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

@@ -1,0 +1,25 @@
+<div class="admin-content-edit">
+  <h1 class="section-heading">About</h1>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form-card">
+      <div class="field">
+        <label>Title</label>
+        <input type="text" class="form-control" formControlName="title" />
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea class="form-control" rows="4" formControlName="description"></textarea>
+      </div>
+      <div class="field">
+        <label>Mission</label>
+        <textarea class="form-control" rows="3" formControlName="mission"></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-signal" [disabled]="saving()">Save</button>
+      </div>
+    </form>
+  }
+</div>

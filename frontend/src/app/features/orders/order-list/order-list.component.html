@@ -1,0 +1,38 @@
+<div class="container order-list-page">
+  <h1 class="section-heading">{{ 'nav.myOrders' | translate }}</h1>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else if (error()) {
+    <app-error-state [message]="'error.generic' | translate" (retry)="fetch()"></app-error-state>
+  } @else if (orders().length === 0) {
+    <app-empty-state icon="bi-receipt" [message]="'empty.orders' | translate" [actionLabel]="'common.viewAll' | translate" actionLink="/products"></app-empty-state>
+  } @else {
+    <div class="table-responsive">
+      <table class="table order-table">
+        <thead>
+          <tr>
+            <th>Order #</th>
+            <th>Date</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (order of orders(); track order.id) {
+            <tr>
+              <td>{{ order.orderNumber }}</td>
+              <td>{{ order.createdAt | date: 'mediumDate' }}</td>
+              <td>{{ order.items.length }}</td>
+              <td>{{ order.total | number }} EGP</td>
+              <td><app-order-status-badge [status]="order.status"></app-order-status-badge></td>
+              <td><a [routerLink]="['/orders', order.id]" class="view-link">{{ 'product.viewDetails' | translate }}</a></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

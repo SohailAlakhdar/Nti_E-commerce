@@ -1,0 +1,7 @@
+<div class="empty-state">
+  <i class="bi" [class]="icon"></i>
+  <p>{{ message }}</p>
+  @if (actionLabel && actionLink) {
+    <a class="btn btn-signal" [routerLink]="actionLink">{{ actionLabel }}</a>
+  }
+</div>

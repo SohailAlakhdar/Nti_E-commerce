@@ -1,0 +1,52 @@
+<div class="container product-details-page">
+  @if (loading()) {
+    <app-loading-spinner [label]="'common.loading' | translate"></app-loading-spinner>
+  } @else if (error() || !product()) {
+    <app-error-state [message]="'error.generic' | translate" (retry)="retry()"></app-error-state>
+  } @else {
+    <div class="details-grid">
+      <div class="gallery">
+        <div class="gallery-main">
+          <img [src]="product()!.images[activeImage()]" [alt]="product()!.name" />
+        </div>
+        @if (product()!.images.length > 1) {
+          <div class="gallery-thumbs">
+            @for (image of product()!.images; track image; let i = $index) {
+              <button type="button" class="thumb" [class.active]="i === activeImage()" (click)="activeImage.set(i)">
+                <img [src]="image" [alt]="product()!.name" />
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="details-info">
+        <p class="category-label">{{ product()!.gender }} · {{ product()!.subCategory }}</p>
+        <h1>{{ product()!.name }}</h1>
+        <p class="price">{{ product()!.price | number }} EGP</p>
+        <p class="description">{{ product()!.description }}</p>
+
+        @if (!product()!.isActive) {
+          <p class="stock-flag unavailable">{{ 'product.inactive' | translate }}</p>
+        } @else if (product()!.stock <= 0) {
+          <p class="stock-flag out">{{ 'product.outOfStock' | translate }}</p>
+        } @else {
+          <p class="stock-flag available">{{ product()!.stock }} in stock</p>
+        }
+
+        <div class="quantity-row">
+          <span>{{ 'common.quantity' | translate }}</span>
+          <div class="quantity-control">
+            <button type="button" (click)="decreaseQuantity()" [disabled]="!purchasable">-</button>
+            <span>{{ quantity() }}</span>
+            <button type="button" (click)="increaseQuantity()" [disabled]="!purchasable">+</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-signal add-btn" [disabled]="!purchasable" (click)="addToCart()">
+          <i class="bi bi-bag-plus"></i> {{ 'product.addToCart' | translate }}
+        </button>
+      </div>
+    </div>
+  }
+</div>

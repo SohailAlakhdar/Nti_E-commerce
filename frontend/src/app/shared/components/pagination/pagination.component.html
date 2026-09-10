@@ -1,0 +1,21 @@
+@if (totalPages > 1) {
+  <nav aria-label="Pagination">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" type="button" (click)="goTo(currentPage - 1)">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+      </li>
+      @for (page of pages; track page) {
+        <li class="page-item" [class.active]="page === currentPage">
+          <button class="page-link" type="button" (click)="goTo(page)">{{ page }}</button>
+        </li>
+      }
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <button class="page-link" type="button" (click)="goTo(currentPage + 1)">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </li>
+    </ul>
+  </nav>
+}

@@ -1,0 +1,18 @@
+.order-list-page {
+  padding: 2.5rem 0 3.5rem;
+}
+
+.order-table {
+  border: 2px solid var(--ink);
+  background-color: var(--paper-raised);
+}
+
+.order-table th {
+  font-family: var(--font-display);
+  border-bottom: 2px solid var(--ink);
+}
+
+.view-link {
+  font-weight: 600;
+  color: var(--signal);
+}

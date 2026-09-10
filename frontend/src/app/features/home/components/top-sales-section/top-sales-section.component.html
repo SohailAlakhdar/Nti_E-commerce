@@ -1,0 +1,19 @@
+<section class="section top-sales-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-heading">{{ 'section.topSales' | translate }}</h2>
+      <a class="view-all" routerLink="/top-sales">{{ 'common.viewAll' | translate }} <i class="bi bi-arrow-right flip-x"></i></a>
+    </div>
+    @if (loading()) {
+      <app-loading-spinner></app-loading-spinner>
+    } @else {
+      <div class="product-scroll">
+        @for (product of products(); track product.id) {
+          <div class="scroll-item">
+            <app-product-card [product]="product" (addToCart)="onAddToCart($event)"></app-product-card>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>

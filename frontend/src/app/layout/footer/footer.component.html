@@ -1,0 +1,33 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" routerLink="/">FRAY<span>.</span></a>
+        <p class="footer-tagline">Clothes for the way you actually live your week.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a routerLink="/men">{{ 'nav.men' | translate }}</a>
+        <a routerLink="/women">{{ 'nav.women' | translate }}</a>
+        <a routerLink="/new-arrivals">{{ 'nav.newArrivals' | translate }}</a>
+        <a routerLink="/top-sales">{{ 'nav.topSales' | translate }}</a>
+      </div>
+      <div>
+        <h4>Store</h4>
+        <a routerLink="/about">{{ 'nav.about' | translate }}</a>
+        <a routerLink="/testimonials">{{ 'nav.testimonials' | translate }}</a>
+        <a routerLink="/shipping">{{ 'nav.shipping' | translate }}</a>
+        <a routerLink="/policies">{{ 'nav.policies' | translate }}</a>
+      </div>
+      <div>
+        <h4>Account</h4>
+        <a routerLink="/orders">{{ 'nav.myOrders' | translate }}</a>
+        <a routerLink="/addresses">{{ 'nav.addresses' | translate }}</a>
+        <a routerLink="/cart">{{ 'nav.cart' | translate }}</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ year }} FRAY. All rights reserved.</span>
+    </div>
+  </div>
+</footer>

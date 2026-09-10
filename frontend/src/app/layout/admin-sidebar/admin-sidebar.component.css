@@ -1,0 +1,66 @@
+.admin-sidebar {
+  background-color: var(--ink);
+  color: var(--paper);
+  width: 240px;
+  min-height: 100vh;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+}
+
+.admin-brand {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--paper);
+}
+
+.admin-brand span {
+  color: var(--signal);
+}
+
+.admin-brand small {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #918e84;
+  font-family: var(--font-body);
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  color: #cfccc2;
+  font-size: 0.92rem;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--paper);
+}
+
+nav a.active {
+  background-color: var(--signal);
+  color: #fff;
+}
+
+.back-to-site {
+  font-size: 0.85rem;
+  color: #918e84;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

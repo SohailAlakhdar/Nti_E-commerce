@@ -1,0 +1,64 @@
+<div class="admin-products">
+  <div class="page-header">
+    <h1 class="section-heading">Products</h1>
+    <a class="btn btn-signal" routerLink="/admin/products/add"><i class="bi bi-plus-lg"></i> Add Product</a>
+  </div>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else if (!result() || result()!.items.length === 0) {
+    <app-empty-state icon="bi-tags" message="No products found"></app-empty-state>
+  } @else {
+    <div class="table-responsive">
+      <table class="table admin-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Gender</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of result()!.items; track product.id) {
+            <tr>
+              <td><img class="row-thumb" [src]="product.images[0]" [alt]="product.name" /></td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.price | number }} EGP</td>
+              <td>{{ product.stock }}</td>
+              <td>{{ product.gender }}</td>
+              <td>{{ product.subCategory }}</td>
+              <td>
+                <span class="badge" [class.text-bg-success]="product.isActive" [class.text-bg-secondary]="!product.isActive">
+                  {{ product.isActive ? 'Active' : 'Frozen' }}
+                </span>
+              </td>
+              <td class="row-actions">
+                <a [routerLink]="['/admin/products', product.id]"><i class="bi bi-eye"></i></a>
+                <a [routerLink]="['/admin/products', product.id, 'edit']"><i class="bi bi-pencil"></i></a>
+                <button type="button" (click)="toggleActive(product)">
+                  <i class="bi" [class.bi-snow]="product.isActive" [class.bi-play-circle]="!product.isActive"></i>
+                </button>
+                <button type="button" class="delete" (click)="confirmDelete(product)"><i class="bi bi-trash"></i></button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <app-pagination [currentPage]="result()!.currentPage" [totalPages]="result()!.totalPages" (pageChange)="onPageChange($event)"></app-pagination>
+  }
+
+  <app-confirm-modal
+    [open]="!!deleteTarget()"
+    title="Delete product"
+    message="Are you sure you want to delete this product?"
+    (confirmed)="deleteProduct()"
+    (cancelled)="cancelDelete()"
+  ></app-confirm-modal>
+</div>

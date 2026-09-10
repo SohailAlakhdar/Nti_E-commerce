@@ -1,0 +1,26 @@
+<div class="container policies-page">
+  <h1 class="section-heading">{{ 'nav.policies' | translate }}</h1>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else if (policy()) {
+    <div class="policy-tabs">
+      <button type="button" [class.active]="activeTab() === 'return'" (click)="activeTab.set('return')">Return Policy</button>
+      <button type="button" [class.active]="activeTab() === 'exchange'" (click)="activeTab.set('exchange')">Exchange Policy</button>
+      <button type="button" [class.active]="activeTab() === 'privacy'" (click)="activeTab.set('privacy')">Privacy Policy</button>
+      <button type="button" [class.active]="activeTab() === 'terms'" (click)="activeTab.set('terms')">Terms &amp; Conditions</button>
+    </div>
+
+    <div class="policy-content">
+      @if (activeTab() === 'return') {
+        <p>{{ policy()!.returnPolicy }}</p>
+      } @else if (activeTab() === 'exchange') {
+        <p>{{ policy()!.exchangePolicy }}</p>
+      } @else if (activeTab() === 'privacy') {
+        <p>{{ policy()!.privacyPolicy }}</p>
+      } @else {
+        <p>{{ policy()!.termsAndConditions }}</p>
+      }
+    </div>
+  }
+</div>

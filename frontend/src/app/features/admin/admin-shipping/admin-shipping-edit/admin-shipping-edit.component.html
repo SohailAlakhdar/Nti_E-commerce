@@ -1,0 +1,27 @@
+<div class="admin-content-edit">
+  <h1 class="section-heading">Shipping</h1>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form-card">
+      <div class="form-row">
+        <div class="field">
+          <label>Shipping Cost</label>
+          <input type="number" class="form-control" formControlName="cost" />
+        </div>
+        <div class="field">
+          <label>Estimated Delivery</label>
+          <input type="text" class="form-control" formControlName="estimatedDeliveryDays" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Shipping Information</label>
+        <textarea class="form-control" rows="5" formControlName="information"></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-signal" [disabled]="saving()">Save</button>
+      </div>
+    </form>
+  }
+</div>

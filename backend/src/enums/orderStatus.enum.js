@@ -1,0 +1,21 @@
+const ORDER_STATUS = Object.freeze({
+  PENDING: 0,
+  CONFIRMED: 1,
+  SHIPPED: 2,
+  DELIVERED: 3,
+  CANCELLED: 4,
+  FAILED: 5,
+});
+
+const ORDER_STATUS_LABELS = Object.freeze({
+  0: "PENDING",
+  1: "CONFIRMED",
+  2: "SHIPPED",
+  3: "DELIVERED",
+  4: "CANCELLED",
+  5: "FAILED",
+});
+
+const VALID_STATUS_VALUES = Object.values(ORDER_STATUS);
+
+module.exports = { ORDER_STATUS, ORDER_STATUS_LABELS, VALID_STATUS_VALUES };

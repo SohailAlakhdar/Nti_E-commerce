@@ -1,0 +1,53 @@
+<div class="admin-reports">
+  <h1 class="section-heading">Reports</h1>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else {
+    <div class="report-grid">
+      <div class="report-card">
+        <h3>Sales</h3>
+        <div class="bar-chart">
+          @for (item of sales(); track item.label) {
+            <div class="bar-column">
+              <div class="bar" [style.height]="barHeight(item.total, maxSales())"></div>
+              <span class="bar-label">{{ item.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="report-card">
+        <h3>Sales by Category</h3>
+        <div class="bar-chart">
+          @for (item of categories(); track item.category) {
+            <div class="bar-column">
+              <div class="bar bar-alt" [style.height]="barHeight(item.unitsSold, maxCategoryUnits())"></div>
+              <span class="bar-label">{{ item.category }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="report-card">
+        <h3>Top Selling Products</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Units Sold</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (product of topProducts(); track product.productId) {
+              <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.unitsSold }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+</div>

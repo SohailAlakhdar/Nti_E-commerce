@@ -1,0 +1,63 @@
+.address-page {
+  padding: 2.5rem 0 3.5rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.address-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.address-card {
+  border: 2px solid var(--ink);
+  padding: 1.25rem;
+  background-color: var(--paper-raised);
+}
+
+.address-name {
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.address-notes {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.address-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.address-actions button {
+  background: none;
+  border: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.address-actions .delete {
+  color: var(--signal);
+}
+
+.form-panel {
+  border: 2px solid var(--ink);
+  padding: 1.75rem;
+  background-color: var(--paper-raised);
+  max-width: 700px;
+}
+
+@media (max-width: 900px) {
+  .address-grid {
+    grid-template-columns: 1fr;
+  }
+}
